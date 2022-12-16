@@ -27,7 +27,7 @@ class Shar(): #обьект шар
     def Draw(self): #рисуется обьект шар 
         arcade.draw_point(self.x, self.y,(76, 98, 236), 10 )
        
-    def Move(self):#движение шаров !!!!
+    def Move(self):#движение шаров на основе вектора скорости и угла
         vy=self.v*math.sin(grad_to_rad(self.a))
         vx=self.v*math.cos(grad_to_rad(self.a))
         
