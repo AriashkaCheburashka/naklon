@@ -11,5 +11,6 @@ class Line():
         self.a = math.atan(self.tg)*180/math.pi
 
     def line_Draw(self):
-        arcade.draw_line(self.x, self.y, self.xx, self.yy, (15, 65, 89), 10)
+        arcade.draw_line(self.x, self.y, self.xx, self.yy, (15, 65, 89), 10) #очень плохо, что в подключаенмой библиотеке есть параметры в видже цифр. 
+                                                                            #Потому что это уже как данность 
 
