@@ -43,13 +43,16 @@ class Shar(): #обьект шар
     def peresechenie_up_to_down(self, line_):#пересечение сверху вниз
         B=90-line_.a
         self.a=180-(B+B+self.a)
+
+    def peresechenie_up_to_down22(self, line_):#пересечение сверху вниз
+        self.a=180+(180-self.a)
         
     def Durka(self, x__, y__, c):
         
         if self.x>x__ and self.x- 15<=x__ and y__-300<self.y<y__:
             #print("1")
             #del
-            pass
+            self.c=(255, 255, 255)
             
             
     def Durka_Draw(self, x_, y_, c):
@@ -90,13 +93,15 @@ class Orbite(arcade.Window):
         self.hh=random.randint(0, H)
         self.ran=0
         self.u=0
-
+        self.ran=random.randint(5,10)
+        self.ran2=random.randint(-10,-5)
 
     def setup(self):
         arcade.set_background_color(arcade.color.WHITE)
-        self.lines.append(diagonal_lib.Line(700,100,1000,900))
+        self.lines.append(diagonal_lib.Line(300,400,1000,900))
+        self.lines.append(diagonal_lib.Line(800,100,1500,1100))
         
-        print(self.lines[0].a)
+        #print(self.lines[0].a)
         
        
     def on_draw(self):
@@ -112,45 +117,70 @@ class Orbite(arcade.Window):
             durka.Draw()
 
     def on_key_press(self, symbol, modifier):
-        if symbol == arcade.key.W:
+        
+        if symbol == arcade.key.W:#1
             self.lines[0].y +=10
             
-        if symbol == arcade.key.D:
+        if symbol == arcade.key.D:#1
             self.lines[0].x +=10
             
-        if symbol == arcade.key.A:
+        if symbol == arcade.key.A:#1
             self.lines[0].x -=10
             
-        if symbol == arcade.key.S:
+        if symbol == arcade.key.S:#1
             self.lines[0].y -=10
 
 
-        if symbol == arcade.key.I:
+        if symbol == arcade.key.I:#1
             self.lines[0].yy +=10
             
-        if symbol == arcade.key.L:
+        if symbol == arcade.key.L:#1
             self.lines[0].xx +=10
             
-        if symbol == arcade.key.J:
+        if symbol == arcade.key.J:#1
             self.lines[0].xx -=10
             
-        if symbol == arcade.key.K:
+        if symbol == arcade.key.K:#1
             self.lines[0].yy -=10
 
+        if symbol == arcade.key.T:#2
+            self.lines[1].y +=10
+            
+        if symbol == arcade.key.H:#2
+            self.lines[1].x +=10
+            
+        if symbol == arcade.key.F:#2
+            self.lines[1].x -=10
+            
+        if symbol == arcade.key.G:#2
+            self.lines[1].y -=10
+
+
+        if symbol == arcade.key.UP:#2
+            self.lines[1].yy +=10
+            
+        if symbol == arcade.key.RIGHT:#2
+            self.lines[1].xx +=10
+            
+        if symbol == arcade.key.LEFT:#2
+            self.lines[1].xx -=10
+            
+        if symbol == arcade.key.DOWN:#2
+            self.lines[1].yy -=10
 
      
     def update(self, delta_time):
            
         for shar in self.s:
             shar.Move()
-            
+            #for i in range(1, 2):
             shar.obschet_otr_sharov(self.lines[0])
+            shar.obschet_otr_sharov(self.lines[1])
             shar.Durka(self.h, self.hh, (87, 65, 34) )
         
             if shar.u==1:
-                self.s.append(Shar(shar.x, shar.y, shar.v, 90+self.lines[0].a, (44, 78, 56)))
+                #self.s.append(Shar(shar.x, shar.y, shar.v, 90+self.lines[0].a, (207, 107, 169)	))
                 #if shar.v>0:
-                self.s.append(Shar(shar.x, shar.y, shar.v, 180-shar.a+self.lines[0].a, (78, 65, 37)))
                   #  shar.u=0
                 #else:
                  #   self.s.append(Shar(shar.x, shar.y, shar.v, self.lines[0].a+shar.a, (78, 65, 37)))
@@ -162,11 +192,11 @@ class Orbite(arcade.Window):
 
         if self.t%30 ==0:
             if random.randint(1,2)==1:
-                self.ran=random.randint(5,10)
+                
                 self.s.append(Shar(random.randint(0, W), random.randint(0, H), self.ran, random.randint(-45, 45), (0, 0, 0)))
             else:
-                self.ran=random.randint(-10,-5)
-                self.s.append(Shar(random.randint(0, W), random.randint(0, H), self.ran, random.randint(-45, 45), (0, 0, 0)))
+                
+                self.s.append(Shar(random.randint(0, W), random.randint(0, H), self.ran2, random.randint(-45, 45), (0, 0, 0)))
             
 
 def main():
