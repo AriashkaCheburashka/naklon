@@ -1,0 +1,98 @@
+import arcade
+import random
+import math
+
+W = 2500
+H = 1200
+L=1
+len_line=300
+
+class Line():
+    def __init__(self, x_, y_, xx_, yy_):
+
+        #if xx_ > x_:
+        self.x = x_
+        self.xx = xx_
+        #else:
+         #   self.x = xx_
+          #  self.xx = x_
+        #if yy_ > y_:
+        self.y = y_
+        self.yy = yy_
+        #else:
+         #   self.y = yy_
+          #  self.yy = y_
+
+        if self.x==self.xx:
+            self.a=0
+        else:
+            self.tg = (self.yy-self.y)/(self.xx-self.x)
+            self.a = math.atan(self.tg)*180/math.pi
+
+
+
+    def line_Draw(self):
+        arcade.draw_line(self.x, self.y, self.xx, self.yy, (15, 65, 89), 10)
+
+    def move(self, rast, napr, point_index):
+        if point_index ==1:
+            if napr == 'up':
+                self.y += rast
+            if napr == 'down':
+                self.y -= rast
+            if napr == 'left':
+                self.x -= rast
+            if napr == 'right':
+                self.x += rast
+        else:
+            if napr == 'up':
+                self.yy += rast
+            if napr == 'down':
+                self.yy -= rast
+            if napr == 'left':
+                self.xx -= rast
+            if napr == 'right':
+                self.xx += rast
+
+
+        if self.x==self.xx:
+            self.tg=(self.yy-self.y)/1
+            self.a = 90 # это можеть быть причиной бага
+        else:
+            self.tg = (self.yy-self.y)/(self.xx-self.x)
+            self.a = math.atan(self.tg)*180/math.pi
+    
+class Orbite(arcade.Window):
+
+    def __init__(self, w_, h_):
+        super().__init__(w_, h_)
+    
+        self.lines=[]
+
+
+    def setup(self):
+        arcade.set_background_color(arcade.color.WHITE)
+        print("yuihgv")
+        
+        
+    def on_draw(self):
+        arcade.start_render()
+        for line in self.lines:
+            line.line_Draw()
+        
+    def update(self, delta_time):
+        print( len(self.lines))
+        print( self.lines[0].x)
+        print(self.lines[0].y)
+        
+            
+#def main():
+ #   O=Orbite(W, H)
+  #  O.setup()
+   # arcade.run()
+
+#if __name__=="__main__":
+ #   main()
+    
+
+
